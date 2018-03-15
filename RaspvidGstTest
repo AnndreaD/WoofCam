@@ -1,0 +1,28 @@
+
+raspivid --nopreview -hf -vf --width 640 --height 480 --intra 10 --framerate 20 --bitrate 2000000 --profile baseline --timeout 0 -o - | gst-launch-1.0 -v videotestsrc is-live=true ! clockoverlay shaded-background=true font-desc="Sans 38" ! theoraenc ! oggmux ! udpsink host=158.38.101.215 port=8004
+
+
+
+ gst-launch-1.0 -v fdsrc ! oggmux ! rtph264pay config-interval=1 pt=96 ! udpsink 
+
+
+ raspivid --nopreview -hf -vf --width 640 --height 480 --intra 10 --framerate 20 --bitrate 2000000 --profile baseline --timeout 0 -o - | gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! udpsink host=158.38.101.215 port=8081
+
+ raspivid --nopreview -hf -vf --width 640 --height 480 --intra 10 --framerate 20 --bitrate 2000000 --profile baseline --timeout 0 -o - | gst-launch-1.0 -v videotestsrc ! vp8enc ! webmmux streamable=true name=stream ! udpsink host=158.38.101.215 port=8081
+
+
+
+
+gst-launch-0.10 -v raspivid host=158.38.101.215 port=8081 ! gdpdepay ! rtph264depay ! ffdec_h264 ! autovideosink
+
+raspivid --nopreview -hf -vf --width 640 --height 480 --intra 10 --framerate 20 --bitrate 2000000 --profile baseline --timeout 0 -o - | gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! gdppay ! udpsink host=158.38.101.215 port=8081
+
+gst-launch-0.10 -v tcpclientsrc host=158.38.101.215 port=8081 ! gdpdepay ! rtph264depay ! ffdec_h264 ! autovideosink
+
+raspivid -t 999999 -h 720 -w 1280 -fps 25 -b 2000000 -vf -o - | gst-launch-1.0 -v fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! gdppay ! tcpserversink host=158.38.101.215 port=8081
+
+
+raspivid --nopreview -hf -vf --width 640 --height 480 --intra 10 --framerate 20 --bitrate 2000000 --profile baseline --timeout 0 -o - | gst-launch-1.0 -v ximagesrc use-damage=false xname=/usr/lib/torcs/torcs-bin ! videoconvert ! videoscale ! video/x-raw,format=I420,width=800,height=600,framerate=25/1 ! jpegenc ! rtpjpegpay ! multiudpsink clients=158.38.101.215:8081
+
+
+gst-launch-1.0 -v ximagesrc use-damage=false xname=/usr/lib/torcs/torcs-bin ! videoconvert ! videoscale ! video/x-raw,format=I420,width=800,height=600,framerate=25/1 ! jpegenc ! rtpjpegpay ! udpsink host=127.0.0.1 port=5000

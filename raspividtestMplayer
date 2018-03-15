@@ -1,0 +1,51 @@
+raspivid -t 999999 -o – | nc 158.38.101.215 8081
+]
+nc -l -p 8081 | mplayer -fps 31 -cache 1024 –
+
+ Pi : raspivid -t 0 -o – | nc 158.38.101.215 8081
+
+
+ gst-launch-1.0 -v tcpclientsrc host=89.11.192.6 port=22  ! gdpdepay !  rtph264depay ! avdec_h264 ! videoconvert ! autovideosink sync=false
+
+ /opt/vc/bin/raspivid -t 0 -hf -fps 20 -w 300 -h 300 -o - | gst-launch-1.0 fdsrc ! h264parse ! rtph264pay config-interval=1 pt=96 ! gdppay ! tcpserversink host=89.11.192.6 port=22
+
+ /opt/vc/bin/raspivid -t 0 -w 300 -h 300 -hf -fps 20 -o - | nc 158.38.101.215 2222
+
+ raspivid -hf -vf -t 99999 -o - | nc 158.38.101.215 8081
+
+ nc -l 8081 | mplayer -fps 31 -cache 1024 
+
+
+ mplayer https://www.youtube.com/watch?v=jq30l5-vBbo
+
+ i="8uyxVmdaJ-w";mplayer -fs $(curl -s "http://www.youtube.com/watch?v=jq30l5-vBbo" | echo -e $(sed 's/%/\\x/g;s/.*\(v[0-9]\.lscache.*\)/http:\/\/\1/g') | grep -oP '^[^|,]*')
+
+ DETTE
+
+ nc -l -p 8081 | mplayer -vo x11 -fps 31 -cache 1024 -
+
+ raspivid -t 99999 -o - | nc -l -p 158.38.101.215 8081
+
+raspivid -t 0 -w 1280 -h 720 -hf -ih -fps 20 -o - | nc - k -l 8081
+
+ mplayer -fps 200 - demuxer h246es ffmpeg://tcp://89.11.192.6:8081
+
+ nc -l -p 8081 | mplayer -fps 31 -cache 1024 -
+
+ raspivid -t 99999 -o - | nc  158.38.101.215 8081
+
+ raspivid -t 0 -w 1280 -h 720 -hf -ih -fps 20 -o - | nc -k -l 8081
+
+
+ nc -l 8081 | cvlc --demux h264 -
+
+ raspivid -w 640 -h 480 -t 600000 -o - | nc 158.38.101.215 8081  (Denne virker)
+
+ raspivid -l -o tcp://158.38.101.215:8081
+
+ -dumpstream -dumpfile ycam.asf
+
+ nc -l -p 8081 | mplayer -fps 31 -cache 1024 -dumpstream -dumpfile -caminput.mp4
+
+
+ raspivid -o - -t 99999 |cvlc -vvv stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:8081}' :demux=ogg
