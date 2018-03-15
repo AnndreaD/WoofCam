@@ -1,0 +1,46 @@
+<? php
+
+// this is the php the server side to send data to the pi
+// setting host and port 
+
+$host = "158.38.101.215";
+$port = 5000;
+
+// ensure no timeout
+set_time_limit (0);
+
+//create socket on server
+//*TO DO CHANGE PROTOCOL
+$socket = socket_create(AF_iNET, SOCK_STREAM,0)
+// if we cant create socket for some reason
+or die ('not able to conenect to socket');
+
+//bind socket to the port and host as given
+$result = socket_bind($socket, $host, $port) 
+// or die if we cant bind
+or die(' cant bind to socket');
+// Accept incomming socket and assign resources to one 
+// which will be responsible for the communication
+// with the client socket.
+$connsocket = socket_accept($socket)
+ or die ('connection not accepted on incoming socket');
+
+
+
+ //SEND A MESSAGE TO RPI
+
+ $outmsg = "treat";
+ socket_write($connsocket, $outmsg, strlen($outmsg)) or die ("could not send message");
+
+
+ //GET MESSAGE FROM RPI
+ $innmsg = socket_read($connsocket, 1024) or die ("could not read incomming message");
+ // close sockets when done
+ socket_close($connsocket);
+ socket_close($socket);
+
+
+
+
+?>
+
