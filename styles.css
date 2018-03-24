@@ -1,0 +1,88 @@
+body{
+	font: 14px;
+	font-family: verdana;
+	text-align: center;
+}
+
+.head {
+
+}
+.wrapper{ 
+	width: 95%;
+    
+	vertical-align: middle;
+	text-align: center;
+	font-family: verdana;
+}
+
+
+/*dette er for hele skjema*/
+.form-group {
+	
+	padding: 20px 10px 10px;
+	font-size:12px;
+	line-height: 1.5px;
+	border-radius:3px;
+}
+/*Dette er en input rute i skjema*/
+.form-control {
+  display: block;
+  margin: auto;
+  width: 30%;
+  height: 30px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #555;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+   }
+ 
+h2{ 
+	color: #3cb471;
+	font-family: verdana;
+	 }
+.form-group label{
+	display: block;
+	font-size: 16px;
+	padding-bottom: 10px;	
+	
+}
+
+p {
+	font-family: sans-serif;
+	font-size: 12px;
+
+}
+
+.loginbtn{
+	background-color: #2874A6;
+	border-radius: 4px;
+	border: #2874A6;
+	color: #fff;
+	padding: 10px 12px 10px 12px;
+    font-size: 14px;
+
+	 }
+.loginbtn:hover{
+	background-color: #1B4F72;
+}
+
+.page-header {
+	text-align: center;
+
+}
+
+img {
+	border-radius: 2px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+h1 {
+	text-align: center;
+
+}
+
