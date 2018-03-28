@@ -1,12 +1,39 @@
 body{
 	font: 14px;
 	font-family: verdana;
-	text-align: center;
-}
-
-.head {
 
 }
+head {
+	width:95%;
+}
+
+ul {
+    list-style-type: none;
+    margin-right: 50px;
+    
+    overflow: hidden;
+    }
+
+li {
+    float: right;
+    padding-right: 10px;
+    font-size: 20px;
+
+}
+
+li a {
+    display: block;
+    color: grey;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    color: #111;
+}
+
 .wrapper{ 
 	width: 95%;
     
@@ -57,6 +84,7 @@ p {
 
 }
 
+
 .loginbtn{
 	background-color: #2874A6;
 	border-radius: 4px;
@@ -74,15 +102,25 @@ p {
 	text-align: center;
 
 }
+.leftimg {
 
-img {
-	border-radius: 2px;
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
 }
+
+.centerimg {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 80%;
+	
+	}
+
+
 h1 {
 	text-align: center;
 
+}
+.extraContainer{
+	text-align: center;
 }
 
