@@ -25,6 +25,11 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     </div>
 
     <img src= "http://89.11.192.6:8081/" >
+    <p><a href= "" class= "treatbtn"> Treat</a></p>
+    <p><a href= "" class= "streambtn">Stream</a></p>
+
+
+
     <p><a href="logout.php" class="redbtn">Sign Out of Your Account</a></p>
 </body>
 </html>
